@@ -9,18 +9,18 @@ def send_telegram(message):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     requests.post(url, data={"chat_id": CHAT_ID, "text": message})
 
-def get_xauusd_m15():
+def get_xauusd_candles():
     url = "https://api.twelvedata.com/time_series"
     params = {
         "symbol": "XAU/USD",
         "interval": "15min",
         "outputsize": 3,
-        "apikey": "5a9a64f5f7ba46c79d17c50b1a3a485d"
+        "apikey": "5a9a64f5f7ba46c79d17c50b1a3a485d",
+        "type": "Physical Currency"
     }
     r = requests.get(url, params=params)
     data = r.json()
-    candles = data["values"]
-    return candles
+    return data["values"]
 
 last_alert = None
 
@@ -29,7 +29,7 @@ send_telegram("✅ Script CRT démarré - Surveillance XAUUSD M15 active !")
 
 while True:
     try:
-        candles = get_xauusd_m15()
+        candles = get_xauusd_candles()
         prev = candles[1]
         current = candles[0]
 
