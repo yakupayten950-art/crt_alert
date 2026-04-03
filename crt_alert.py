@@ -5,7 +5,7 @@ import random
 
 TOKEN = "8671433198:AAEftUbbKOcuStOiH5FozZR_5zTPTPhP02E"
 CHAT_ID = "7329783593"
-
+ 
 QUOTES = [
     "Les meilleurs trades viennent a ceux qui attendent",
     "Discipline > Emotion. Toujours.",
